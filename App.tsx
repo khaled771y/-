@@ -156,7 +156,7 @@ const CodeBlock: React.FC<{ code: string; language?: string }> = ({ code, langua
                     {copied ? 'Copied' : 'Copy'}
                 </button>
             </div>
-            <div className="p-4 overflow-x-auto">
+            <div className="p-4 overflow-x-auto max-h-96 overflow-y-auto custom-scrollbar">
                 <pre className="font-mono text-sm leading-relaxed text-blue-100">
                     <code>{code}</code>
                 </pre>
@@ -168,7 +168,7 @@ const CodeBlock: React.FC<{ code: string; language?: string }> = ({ code, langua
 // --- Message Row Component (Replaces VirtualRow) ---
 const MessageRow: React.FC<{ msg: ChatMessage }> = memo(({ msg }) => {
     return (
-        <div className={`pb-6 px-4 md:px-6 flex ${msg.type === MessageType.USER ? 'justify-end' : 'justify-start'}`}>
+        <div className={`pb-6 px-4 md:px-6 flex animate-in fade-in slide-in-from-bottom-2 duration-300 ${msg.type === MessageType.USER ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-[85%] md:max-w-[70%] ${msg.type === MessageType.SYSTEM ? 'w-full flex justify-center' : ''}`}>
                 {msg.type === MessageType.SYSTEM ? (
                     <div className="bg-white/5 border border-white/10 rounded-full px-4 py-1 text-xs text-slate-400">
@@ -557,14 +557,14 @@ const GamificationProfile: React.FC<{ settings: UserSettings }> = ({ settings })
         {/* Progress Bar */}
         <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden mb-3">
              <div 
-               className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" 
+               className="h-full bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 transition-all duration-1000 ease-out" 
                style={{ width: `${Math.min(100, (settings.points % 100))}%` }}
              ></div>
         </div>
 
         <div className="flex flex-wrap gap-1">
             {settings.badges.map((badge, idx) => (
-                <div key={idx} className="bg-white/5 border border-white/10 rounded-md px-1.5 py-0.5 text-[10px] text-yellow-100 flex items-center gap-1" title={badge}>
+                <div key={idx} className="bg-white/5 border border-white/10 rounded-md px-1.5 py-0.5 text-[10px] text-yellow-100 flex items-center gap-1 shadow-[0_0_8px_rgba(253,224,71,0.2)]" title={badge}>
                     <StarIcon className="w-3 h-3 text-yellow-400" />
                     {badge.length > 8 ? badge.substring(0,8) + '..' : badge}
                 </div>
@@ -908,7 +908,19 @@ export default function App() {
   return (
     <div className="flex h-screen w-full relative overflow-hidden bg-[#020617]">
       {/* Dynamic Nebula Background */}
-      <div className="absolute inset-0 nebula-bg opacity-40 pointer-events-none"></div>
+      <div 
+        className="absolute inset-0 pointer-events-none transition-opacity duration-1000"
+        style={{
+            background: `
+                radial-gradient(circle at 20% 50%, rgba(29, 78, 216, 0.15) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 30%, rgba(126, 34, 206, 0.15) 0%, transparent 50%), 
+                radial-gradient(circle at 50% 80%, rgba(192, 38, 211, 0.1) 0%, transparent 50%)
+            `,
+            filter: 'blur(40px)',
+            animation: 'nebula-move 25s ease-in-out infinite alternate',
+            opacity: 0.6
+        }}
+      ></div>
 
       {reward && <RewardToast message={reward.title} subtext={reward.sub} onClose={() => setReward(null)} />}
 
@@ -968,7 +980,7 @@ export default function App() {
           </button>
           
            <div className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-2 mt-6">أوضاع خاصة</div>
-           <button onClick={() => switchMode(AppMode.DETECTIVE)} className={`w-full text-right p-3 rounded-xl flex items-center gap-3 transition-all ${mode === AppMode.DETECTIVE ? 'bg-indigo-600/20 text-white border border-indigo-500/50' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}>
+           <button onClick={() => switchMode(AppMode.DETECTIVE)} className={`w-full text-right p-3 rounded-xl flex items-center gap-3 transition-all ${mode === AppMode.DETECTIVE ? 'bg-indigo-600/20 text-white border border-indigo-500/50 shadow-[0_0_15px_rgba(99,102,241,0.2)]' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}>
             <MagnifyingGlassIcon className="w-5 h-5" /> المحقق هولمز
           </button>
            <button onClick={() => switchMode(AppMode.TUTOR)} className={`w-full text-right p-3 rounded-xl flex items-center gap-3 transition-all ${mode === AppMode.TUTOR ? 'bg-teal-600/20 text-white border border-teal-500/50' : 'text-slate-400 hover:bg-white/5 hover:text-white'}`}>
@@ -1010,8 +1022,9 @@ export default function App() {
         </div>
       </aside>
 
-      {/* Main Content Area */}
+      {/* Main Content Area - Animated Transition */}
       <main className="flex-1 relative flex flex-col h-full overflow-hidden">
+        <div key={mode} className="flex-1 flex flex-col h-full animate-in fade-in slide-in-from-bottom-4 duration-500">
         {mode === AppMode.LIVE_VOICE ? (
             <LiveInterface 
                 systemInstruction={getSystemInstruction()} 
@@ -1170,6 +1183,7 @@ export default function App() {
                 </div>
             </>
         )}
+        </div>
       </main>
     </div>
   );
