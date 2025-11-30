@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Copy of HyperMind",
+  "description": "بيئة محادثة ذكية شاملة تجمع بين التفاعل النصي والصوتي والمرئي.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

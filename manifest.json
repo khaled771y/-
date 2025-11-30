@@ -1,0 +1,19 @@
+{
+  "short_name": "HyperMind",
+  "name": "HyperMind AI OS",
+  "description": "The advanced AI Operating System for creative and professional tasks.",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/6134/6134346.png",
+      "type": "image/png",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#020617",
+  "background_color": "#020617",
+  "orientation": "portrait",
+  "categories": ["productivity", "utilities", "artificial intelligence"]
+}

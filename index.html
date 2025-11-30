@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#020617" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- SEO & Domain Configuration for hyperman.pro -->
+    <title>HyperMind | هايبر-ميند</title>
+    <meta name="description" content="هايبر-ميند: نظام تشغيل ذكي ومساعد شخصي متطور من تطوير المهندس خالد النظاري.">
+    <link rel="canonical" href="https://hyperman.pro" />
+    
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hyperman.pro" />
+    <meta property="og:title" content="HyperMind AI OS" />
+    <meta property="og:description" content="بيئة محادثة ذكية شاملة تجمع بين التفاعل النصي والصوتي والمرئي." />
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/6134/6134346.png" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://hyperman.pro" />
+    <meta property="twitter:title" content="HyperMind AI OS" />
+    <meta property="twitter:description" content="نظام ذكي متطور للمحادثة والإبداع الرقمي." />
+    <meta property="twitter:image" content="https://cdn-icons-png.flaticon.com/512/6134/6134346.png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --primary-glow: conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      body {
+        font-family: 'Cairo', sans-serif;
+        background-color: #020617; /* Slate 950 - Deepest Dark */
+        color: #e2e8f0;
+        overflow: hidden;
+        overscroll-behavior: none; /* Prevent pull-to-refresh on mobile */
+      }
+      
+      /* Luxury Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #020617;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #4f46e5, #9333ea);
+        border-radius: 10px;
+        border: 2px solid #020617;
+      }
+
+      /* Premium Glassmorphism */
+      .glass-premium {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      }
+      
+      .glass-panel-3d {
+        background: linear-gradient(145deg, rgba(30, 41, 59, 0.4), rgba(15, 23, 42, 0.6));
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 
+          0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+          0 2px 4px -1px rgba(0, 0, 0, 0.06),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      }
+
+      /* 3D Text Effect */
+      .text-3d {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(124, 58, 237, 0.5);
+      }
+
+      /* Animated Nebula Background */
+      .nebula-bg {
+        background: 
+          radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15) 0%, transparent 50%),
+          radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.1) 0%, transparent 50%),
+          radial-gradient(circle at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%);
+        animation: nebula-move 20s ease-in-out infinite alternate;
+      }
+      
+      @keyframes nebula-move {
+        0% { transform: scale(1); }
+        100% { transform: scale(1.1); }
+      }
+
+      /* Logo Animations */
+      @keyframes spin-slow {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      .perspective-1000 {
+        perspective: 1000px;
+      }
+      .preserve-3d {
+        transform-style: preserve-3d;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "@heroicons/react/": "https://aistudiocdn.com/@heroicons/react@^2.2.0/",
+    "react-window": "https://esm.sh/react-window@1.8.10?external=react,react-dom",
+    "react-virtualized-auto-sizer": "https://esm.sh/react-virtualized-auto-sizer@1.0.24?external=react,react-dom"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
